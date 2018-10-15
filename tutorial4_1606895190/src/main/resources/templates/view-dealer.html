@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Lihat Dealer</title>
+	</head>
+	<body>
+		<h2 th:text="'Alamat: ' + ${alamat}"></h2>
+		<h2 th:text="'Telepon: ' + ${noTelp}"></h2>
+		<h2 th:text="'List Mobil: '"></h2>
+		<table>
+		    <thead>
+		        <tr>
+		            <th> Harga </th>
+		            <th> Tipe </th>
+		            <th> Jumlah </th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    <tr th:if="${carList.isEmpty()}">
+		            <td colspan="2"> No Car Available </td>
+		        </tr>
+		        <tr th:each="car : ${carList}">
+		            <td><span th:text="${car.getPrice()}"> Price </span></td>
+		            <td><span th:text="${car.getType()}"> Type </span></td>
+		            <td><span th:text="${car.getAmount()}"> Amount </span></td>
+		        </tr>
+		    </tbody>
+		</table>
+		<td><a th:href="@{/car/add/{id}(id=${dealerId})}" method="GET">Add car</a></td>
+	</body>
+</html>
